@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+  background-color: lightgray;
+  font-family: sans-serif;
+  margin-top: 50px;
+}
+.storage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.square {
+  height: 50px;
+  width: 50px;
+  border: 3px solid black;
+}
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  gap: 20px;
+}
+
+#square1 {
+  background-color: red;
+}
+
+#square2 {
+  background-color: blue;
+}
+
+#square3 {
+  background-color: yellow;
+}
+
+#square4 {
+  background-color: blueviolet;
+}
+
+#square5 {
+  background-color: green;
+}
+
+#square6 {
+  background-color: purple;
+}
+
+#square7 {
+  background-color: orange;
+}
+
+#square8 {
+  background-color: brown;
+}
+
+#square9 {
+  background-color: teal;
+}
