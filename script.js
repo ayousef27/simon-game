@@ -42,6 +42,7 @@ const startNewGame = () => {
   playerScore = 0
   generateRandomSquare()
   displaySequence()
+  gameOver = false
   console.log('Game started. Level:', currentLevel)
 }
 
@@ -56,23 +57,58 @@ console.log('sequence: ', sequence)
 // displaySequence : this function will show the sequence to the player (flashing)
 const displaySequence = () => {
   let index = 0
+  const squares = document.querySelectorAll('.square')
+  let interval = setInterval(() => {
+    const square = document.getElementById(`square ${sequence[index] + 1}`)
+
+    square.style.opacity = 0
+
+    setTimeout(() => {
+      square.style.opacity = 1
+    }, 500)
+    index++
+    if (index >= sequence.length) {
+      clearInterval(interval)
+      getPlayerInput()
+    }
+  }, 1000)
 }
 
 // getPlayerInput : this function will receive the player input
 const getPlayerInput = () => {
-  getPlayerInput = []
+  playerInput = []
   const squares = document.querySelectorAll('.square')
-  squares.forEach(function (square, index) {
-    square.addEventListener('click', function () {
+  squares.forEach((squares, index) => {
+    squares.addEventListener('click', () => {
       if (!gameOver) {
         playerInput.push(index)
+        console.log('player input', index)
+        checkPlayerInput()
       }
     })
   })
 }
 
 // checkPlayerInput : this function will check if the player input matches the flashing sequence by looping through the players input and see if it matches, if it dosent match it will go to game over
-const checkPlayerInput = () => {}
+const checkPlayerInput = () => {
+  for (let i = 0; i < playerInput.length; i++) {
+    if (playerInput[i] !== sequence[i]) {
+      gameOver = true
+      console.log('Game over!')
+
+      return
+    }
+  }
+  if (playerInput.length === sequence.length) {
+    playerScore++
+    currentLevel++
+    console.log('level up current level:', currentLevel)
+    setTimeout(() => {
+      generateRandomSquare()
+      displaySequence()
+    }, 1000)
+  }
+}
 
 // checkGameOver : this function will handle if the game is over by checking if the player has chosen the correct squares in the order specified and will display a game over message.
 
