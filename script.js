@@ -40,10 +40,11 @@ const startNewGame = () => {
   playerInput = []
   currentLevel = 1
   playerScore = 0
-  generateRandomSquare()
-  displaySequence()
+
   gameOver = false
   console.log('Game started. Level:', currentLevel)
+  generateRandomSquare()
+  displaySequence()
 }
 
 // generateRandomSquare : this function will generate a random square from the array.
@@ -113,3 +114,4 @@ const checkPlayerInput = () => {
 // checkGameOver : this function will handle if the game is over by checking if the player has chosen the correct squares in the order specified and will display a game over message.
 
 //
+startNewGame()
