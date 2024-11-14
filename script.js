@@ -48,7 +48,7 @@ const startNewGame = () => {
 
 // generateRandomSquare : this function will generate a random square from the array.
 const generateRandomSquare = () => {
-  let randomSquare = Math.random * numSquares
+  let randomSquare = Math.floor(Math.random() * numSquares)
   sequence.push(randomSquare)
 }
 console.log('sequence: ', sequence)
@@ -59,7 +59,7 @@ const displaySequence = () => {
   let index = 0
   const squares = document.querySelectorAll('.square')
   let interval = setInterval(() => {
-    const square = document.getElementById(`square ${sequence[index] + 1}`)
+    const square = document.getElementById(`square${sequence[index] + 1}`)
 
     square.style.opacity = 0
 
