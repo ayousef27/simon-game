@@ -31,7 +31,7 @@ let playerScore = 0
 const numSquares = 9
 
 // 8 numSquares : to track numbers of squares (9 in this case)
-
+let isDisplaying = false
 //@ functions
 
 // startNewGame : this function will reset the game score and squares and will inform the player to start by printing a massage that states that.
@@ -80,15 +80,18 @@ const displaySequence = () => {
 const getPlayerInput = () => {
   playerInput = []
   const squares = document.querySelectorAll('.square')
-  squares.forEach((square, index) => {
-    square.addEventListener('click', () => {
-      if (!gameOver) {
-        playerInput.push(index)
-        console.log('player input', index)
-        checkPlayerInput()
-      }
-    })
+  squares.forEach((square) => {
+    square.removeEventListener('click', handleSquareClick)
+    square.addEventListener('click', handleSquareClick)
   })
+  function handleSquareClick(event) {
+    if (!gameOver && !isDisplaying) {
+      const index = Array.from(squares).indexOf(event.target)
+      playerInput.push(index)
+      console.log('player input', playerInput)
+      checkPlayerInput()
+    }
+  }
 }
 
 // checkPlayerInput : this function will check if the player input matches the flashing sequence by looping through the players input and see if it matches, if it dosent match it will go to game over
