@@ -58,15 +58,16 @@ console.log('sequence: ', sequence)
 // displaySequence : this function will show the sequence to the player (flashing)
 const displaySequence = () => {
   let index = 0
-  const squares = document.querySelectorAll('.square')
+
   let interval = setInterval(() => {
     const square = document.getElementById(`square${sequence[index] + 1}`)
+    if (square) {
+      square.style.opacity = 0
 
-    square.style.opacity = 0
-
-    setTimeout(() => {
-      square.style.opacity = 1
-    }, 500)
+      setTimeout(() => {
+        square.style.opacity = 1
+      }, 500)
+    }
     index++
     if (index >= sequence.length) {
       clearInterval(interval)
@@ -79,8 +80,8 @@ const displaySequence = () => {
 const getPlayerInput = () => {
   playerInput = []
   const squares = document.querySelectorAll('.square')
-  squares.forEach((squares, index) => {
-    squares.addEventListener('click', () => {
+  squares.forEach((square, index) => {
+    square.addEventListener('click', () => {
       if (!gameOver) {
         playerInput.push(index)
         console.log('player input', index)
@@ -92,14 +93,17 @@ const getPlayerInput = () => {
 
 // checkPlayerInput : this function will check if the player input matches the flashing sequence by looping through the players input and see if it matches, if it dosent match it will go to game over
 const checkPlayerInput = () => {
+  console.log('player input:', playerInput)
+  console.log('sequence', sequence)
   for (let i = 0; i < playerInput.length; i++) {
     if (playerInput[i] !== sequence[i]) {
       gameOver = true
-      console.log('Game over!')
+      console.log('Game over ! at index ', i)
 
       return
     }
   }
+
   if (playerInput.length === sequence.length) {
     playerScore++
     currentLevel++
