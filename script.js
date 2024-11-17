@@ -57,6 +57,7 @@ console.log('sequence: ', sequence)
 
 // displaySequence : this function will show the sequence to the player (flashing)
 const displaySequence = () => {
+  isDisplaying = true
   let index = 0
 
   let interval = setInterval(() => {
@@ -71,6 +72,7 @@ const displaySequence = () => {
     index++
     if (index >= sequence.length) {
       clearInterval(interval)
+      isDisplaying = false
       getPlayerInput()
     }
   }, 1000)
