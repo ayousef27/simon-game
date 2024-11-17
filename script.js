@@ -57,7 +57,7 @@ console.log('sequence: ', sequence)
 
 // displaySequence : this function will show the sequence to the player (flashing)
 const displaySequence = () => {
-  isDisplaying = true
+  gameOver = false
   let index = 0
 
   let interval = setInterval(() => {
@@ -87,7 +87,7 @@ const getPlayerInput = () => {
     square.addEventListener('click', handleSquareClick)
   })
   function handleSquareClick(event) {
-    if (!gameOver && !isDisplaying) {
+    if (!gameOver) {
       const index = Array.from(squares).indexOf(event.target)
       playerInput.push(index)
       console.log('player input', playerInput)
@@ -98,7 +98,6 @@ const getPlayerInput = () => {
 
 // checkPlayerInput : this function will check if the player input matches the flashing sequence by looping through the players input and see if it matches, if it dosent match it will go to game over
 const checkPlayerInput = () => {
-  console.log('player input:', playerInput)
   console.log('sequence', sequence)
   for (let i = 0; i < playerInput.length; i++) {
     if (playerInput[i] !== sequence[i]) {
