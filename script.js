@@ -1,17 +1,11 @@
 // @ Variables
 
-// 1 sequence [] : to store sequence of squares (each square is presented by an index(0 - 8))
-let sequence = []
-// 2 playerInput [] : to store players input sequence
-let playerInput = []
-
-// 3 gameOver : true or false to indicate if game is over or not
-let gameOver = false
-
-// 4 currentLevel : to track current level (starting from 1)
-let currentLevel = 1
-
-// 5 squareColors [] : to store colors of each square (9 colors)
+let sequence = [] // Stores the sequence of squares
+let playerInput = [] // Stores the player's input
+let gameOver = false // Tracks if the game is over
+let currentLevel = 1 // Tracks the current level
+let playerScore = 0 // Tracks the player's score
+const numSquares = 9 // The number of squares in the grid
 const squareColors = [
   'red',
   'blue',
@@ -24,40 +18,27 @@ const squareColors = [
   'teal'
 ]
 
-// 6 playerScore : to track player score (each level is 1 point)
-let playerScore = 0
-
-// 7 gridSize : a number for grid (3 X 3) 3 rows and 3 columns
-const numSquares = 9
-
-// 8 numSquares : to track numbers of squares (9 in this case)
-let isDisplaying = false
-//@ functions
-
-// startNewGame : this function will reset the game score and squares and will inform the player to start by printing a massage that states that.
+// Function to start a new game
 const startNewGame = () => {
   sequence = []
   playerInput = []
   currentLevel = 1
   playerScore = 0
-
   gameOver = false
+
   console.log('Game started. Level:', currentLevel)
   generateRandomSquare()
   displaySequence()
 }
 
-// generateRandomSquare : this function will generate a random square from the array.
+// Function to generate a random square and add it to the sequence
 const generateRandomSquare = () => {
   let randomSquare = Math.floor(Math.random() * numSquares)
   sequence.push(randomSquare)
 }
-console.log('sequence: ', sequence)
-// addSquare : this function will add a random square
 
-// displaySequence : this function will show the sequence to the player (flashing)
+// Function to display the sequence (flashing effect)
 const displaySequence = () => {
-  gameOver = false
   let index = 0
 
   let interval = setInterval(() => {
@@ -72,46 +53,54 @@ const displaySequence = () => {
     index++
     if (index >= sequence.length) {
       clearInterval(interval)
-      isDisplaying = false
       getPlayerInput()
     }
   }, 1000)
 }
 
-// getPlayerInput : this function will receive the player input
+// Function to handle player input by adding event listeners to the squares
 const getPlayerInput = () => {
   playerInput = []
   const squares = document.querySelectorAll('.square')
+
   squares.forEach((square) => {
     square.removeEventListener('click', handleSquareClick)
+  })
+
+  squares.forEach((square) => {
     square.addEventListener('click', handleSquareClick)
   })
-  function handleSquareClick(event) {
-    if (!gameOver) {
-      const index = Array.from(squares).indexOf(event.target)
-      playerInput.push(index)
-      console.log('player input', playerInput)
-      checkPlayerInput()
-    }
+}
+
+// This function will be triggered when the player clicks a square
+const handleSquareClick = (event) => {
+  if (!gameOver) {
+    const index = parseInt(event.target.id.replace('square', '')) - 1
+    playerInput.push(index)
+    console.log('Player input:', playerInput)
+    checkPlayerInput()
   }
 }
 
-// checkPlayerInput : this function will check if the player input matches the flashing sequence by looping through the players input and see if it matches, if it dosent match it will go to game over
+// Function to check if the player input matches the sequence
 const checkPlayerInput = () => {
-  console.log('sequence', sequence)
+  console.log('Player input:', playerInput)
+  console.log('Sequence:', sequence)
+
   for (let i = 0; i < playerInput.length; i++) {
     if (playerInput[i] !== sequence[i]) {
       gameOver = true
-      console.log('Game over ! at index ', i)
-
+      console.log('Game Over! Mismatch at index', i)
       return
     }
   }
 
+  // If player input matches the sequence
   if (playerInput.length === sequence.length) {
     playerScore++
     currentLevel++
-    console.log('level up current level:', currentLevel)
+    console.log('Level up! Current level:', currentLevel)
+
     setTimeout(() => {
       generateRandomSquare()
       displaySequence()
@@ -119,7 +108,4 @@ const checkPlayerInput = () => {
   }
 }
 
-// checkGameOver : this function will handle if the game is over by checking if the player has chosen the correct squares in the order specified and will display a game over message.
-
-//
 startNewGame()
