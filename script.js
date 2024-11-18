@@ -1,11 +1,17 @@
-// @ Variables
+// @ VARIABLES
 
-let sequence = [] // Stores the sequence of squares
-let playerInput = [] // Stores the player's input
-let gameOver = false // Tracks if the game is over
-let currentLevel = 1 // Tracks the current level
-let playerScore = 0 // Tracks the player's score
-const numSquares = 9 // The number of squares in the grid
+let sequence = []
+// Stores the sequence of squares
+let playerInput = []
+// Stores the player's input
+let gameOver = false
+// Tracks if the game is over
+let currentLevel = 1
+// Tracks the current level
+let playerScore = 0
+// Tracks the player's score
+const numSquares = 9
+// The number of squares in the grid
 const squareColors = [
   'red',
   'blue',
@@ -17,8 +23,9 @@ const squareColors = [
   'brown',
   'teal'
 ]
+// @FUNCTIONS
 
-// Function to start a new game
+// startNewGame Function to start a new game
 const startNewGame = () => {
   sequence = []
   playerInput = []
@@ -31,13 +38,13 @@ const startNewGame = () => {
   displaySequence()
 }
 
-// Function to generate a random square and add it to the sequence
+// generateRandomSquare Function to generate a random square and add it to the sequence
 const generateRandomSquare = () => {
   let randomSquare = Math.floor(Math.random() * numSquares)
   sequence.push(randomSquare)
 }
 
-// Function to display the sequence (flashing effect)
+// displaySequence Function to display the sequence (flashing effect)
 const displaySequence = () => {
   let index = 0
 
@@ -58,7 +65,7 @@ const displaySequence = () => {
   }, 1000)
 }
 
-// Function to handle player input by adding event listeners to the squares
+// getPlayerInput Function to handle player input by adding event listeners to the squares
 const getPlayerInput = () => {
   playerInput = []
   const squares = document.querySelectorAll('.square')
@@ -72,7 +79,7 @@ const getPlayerInput = () => {
   })
 }
 
-// This function will be triggered when the player clicks a square
+// handleSquareCLick This function will be triggered when the player clicks a square
 const handleSquareClick = (event) => {
   if (!gameOver) {
     const index = parseInt(event.target.id.replace('square', '')) - 1
@@ -82,7 +89,7 @@ const handleSquareClick = (event) => {
   }
 }
 
-// Function to check if the player input matches the sequence
+// checkPlayerInput Function to check if the player input matches the sequence
 const checkPlayerInput = () => {
   console.log('Player input:', playerInput)
   console.log('Sequence:', sequence)
@@ -95,7 +102,6 @@ const checkPlayerInput = () => {
     }
   }
 
-  // If player input matches the sequence
   if (playerInput.length === sequence.length) {
     playerScore++
     currentLevel++
