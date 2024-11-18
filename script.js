@@ -32,10 +32,13 @@ const startNewGame = () => {
   currentLevel = 1
   playerScore = 0
   gameOver = false
+  document.getElementById('game-over-message').style.display = 'none'
+  document.getElementById('start-button').style.display = 'none'
 
   console.log('Game started. Level:', currentLevel)
   generateRandomSquare()
   displaySequence()
+  updateScore()
 }
 
 // generateRandomSquare Function to generate a random square and add it to the sequence
@@ -98,6 +101,7 @@ const checkPlayerInput = () => {
     if (playerInput[i] !== sequence[i]) {
       gameOver = true
       console.log('Game Over! Mismatch at index', i)
+      document.getElementById(game - over - message).style.display = 'block'
       return
     }
   }
