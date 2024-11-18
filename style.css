@@ -17,7 +17,7 @@ body {
 .square {
   height: 120px;
   width: 120px;
-  border: 3px solid black;
+  border: 2px solid black;
   opacity: 1;
   transition: opacity 0.5s ease;
   pointer-events: auto;
@@ -27,7 +27,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 120px);
   grid-template-rows: repeat(3, 120px);
-  gap: 20px;
+  gap: 0px;
 }
 
 #square1 {
@@ -64,4 +64,27 @@ body {
 
 #square9 {
   background-color: teal;
+}
+
+#show-score {
+  margin: 30px 0 0 0;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+#show-level {
+  margin: 30px 0 0 0;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+#start-button {
+  color: white;
+  cursor: pointer;
+  background-color: #614caf;
+  font-size: 16px;
 }

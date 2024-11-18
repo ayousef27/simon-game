@@ -103,9 +103,11 @@ const checkPlayerInput = () => {
   }
 
   if (playerInput.length === sequence.length) {
-    playerScore++
+    playerScore = playerScore + 100
     currentLevel++
     console.log('Level up! Current level:', currentLevel)
+    updateScore()
+    updateLevel()
 
     setTimeout(() => {
       generateRandomSquare()
@@ -114,4 +116,13 @@ const checkPlayerInput = () => {
   }
 }
 
-startNewGame()
+const updateScore = () => {
+  document.getElementById('score').textContent = playerScore
+}
+
+const updateLevel = () => {
+  document.getElementById('level').textContent = currentLevel
+}
+document.getElementById('start-button').addEventListener('click', () => {
+  startNewGame()
+})
