@@ -34,6 +34,7 @@ const startNewGame = () => {
   gameOver = false
   document.getElementById('game-over-message').style.display = 'none'
   document.getElementById('start-button').style.display = 'none'
+  document.getElementById('restart').style.display = 'none'
 
   console.log('Game started. Level:', currentLevel)
   generateRandomSquare()
@@ -85,9 +86,16 @@ const getPlayerInput = () => {
 // handleSquareCLick This function will be triggered when the player clicks a square
 const handleSquareClick = (event) => {
   if (!gameOver) {
+    const square = event.target
     const index = parseInt(event.target.id.replace('square', '')) - 1
     playerInput.push(index)
     console.log('Player input:', playerInput)
+    const orgColor = square.style.backgroundColor
+    square.style.backgroundColor = 'white'
+    setTimeout(() => {
+      square.style.backgroundColor = orgColor
+    }, 300)
+
     checkPlayerInput()
   }
 }
@@ -101,7 +109,9 @@ const checkPlayerInput = () => {
     if (playerInput[i] !== sequence[i]) {
       gameOver = true
       console.log('Game Over! Mismatch at index', i)
-      document.getElementById(game - over - message).style.display = 'block'
+      document.getElementById('game-over-message').style.display = 'block'
+      document.getElementById('restart').style.display = 'inline-block'
+
       return
     }
   }
@@ -127,6 +137,10 @@ const updateScore = () => {
 const updateLevel = () => {
   document.getElementById('level').textContent = currentLevel
 }
+document.getElementById('restart').addEventListener('click', () => {
+  startNewGame()
+  document.getElementById('start-button').style.display = 'none'
+})
 document.getElementById('start-button').addEventListener('click', () => {
   startNewGame()
 })

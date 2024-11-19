@@ -8,30 +8,31 @@
     <title>Simon</title>
   </head>
   <body>
-    <div class="storage">
-      <div class="game-container">
-        <div id="square1" class="square"></div>
-        <div id="square2" class="square"></div>
-        <div id="square3" class="square"></div>
-        <div id="square4" class="square"></div>
-        <div id="square5" class="square"></div>
-        <div id="square6" class="square"></div>
-        <div id="square7" class="square"></div>
-        <div id="square8" class="square"></div>
-        <div id="square9" class="square"></div>
+    <h1>Simon</h1>
+    <div>
+      <div class="storage">
+        <div class="game-container">
+          <div id="square1" class="square"><span class="num">1</span></div>
+          <div id="square2" class="square"><span class="num">2</span></div>
+          <div id="square3" class="square"><span class="num">3</span></div>
+          <div id="square4" class="square"><span class="num">4</span></div>
+          <div id="square5" class="square"><span class="num">5</span></div>
+          <div id="square6" class="square"><span class="num">6</span></div>
+          <div id="square7" class="square"><span class="num">7</span></div>
+          <div id="square8" class="square"><span class="num">8</span></div>
+          <div id="square9" class="square"><span class="num">9</span></div>
+        </div>
+        <div class="message"></div>
+        <div id="show-score">
+          <p>Score: <span id="score">0</span></p>
+        </div>
+        <div id="show-level">
+          <p>Current level: <span id="level">1</span></p>
+        </div>
+        <div id="game-over-message">Game Over get good</div>
       </div>
-      <div class="message"></div>
-      <div id="show-score">
-        <p>Score: <span id="score">0</span></p>
-      </div>
-      <div id="show-level">
-        <p>Current level: <span id="level">1</span></p>
-      </div>
-      <div id="game-over-message">
-        <p>Game over! get good next time</p>
-      </div>
-
       <button id="start-button">Start Game</button>
+      <button id="restart">Restart Game</button>
     </div>
   </body>
 </html>

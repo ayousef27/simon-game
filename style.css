@@ -4,9 +4,16 @@
   box-sizing: border-box;
   background-color: black;
 }
+h1 {
+  color: #333;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
 body {
   text-align: center;
-  background-color: lightgray;
+
   font-family: sans-serif;
   margin-top: 50px;
 }
@@ -16,6 +23,7 @@ body {
   align-items: center;
 }
 .square {
+  position: relative;
   height: 120px;
   width: 120px;
   border: 2px solid black;
@@ -23,7 +31,12 @@ body {
   transition: opacity 0.5s ease;
   pointer-events: auto;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
 }
+
 .game-container {
   display: grid;
   grid-template-columns: repeat(3, 120px);
@@ -95,4 +108,24 @@ body {
   text-align: center;
   color: red;
   font-size: 20px;
+  display: none;
+}
+
+.num {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  z-index: 10;
+  background-color: transparent;
+}
+
+#restart {
+  display: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
 }
