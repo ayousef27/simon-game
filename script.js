@@ -139,6 +139,7 @@ const updateLevel = () => {
 }
 document.getElementById('restart').addEventListener('click', () => {
   startNewGame()
+
   document.getElementById('start-button').style.display = 'none'
 })
 document.getElementById('start-button').addEventListener('click', () => {

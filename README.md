@@ -29,3 +29,5 @@ Future improvements for the game :
 3- will make the game playable using the numbers on the keyboard.
 
 4- will create a hard mode for the game where the sequence will flash faster than normal.
+
+5- will add soundtrack and click audio to the game
