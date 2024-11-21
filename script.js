@@ -40,6 +40,7 @@ const startNewGame = () => {
   generateRandomSquare()
   displaySequence()
   updateScore()
+  updateLevel()
 }
 
 // generateRandomSquare Function to generate a random square and add it to the sequence

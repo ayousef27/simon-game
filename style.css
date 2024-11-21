@@ -123,11 +123,15 @@ body {
 #restart {
   display: none;
   color: white;
-  font-size: 16px;
-  padding: 10px 20px;
+  background-color: #ff6347;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 @media (max-width: 480px) {
